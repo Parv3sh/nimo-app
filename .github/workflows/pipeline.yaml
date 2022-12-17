@@ -24,6 +24,10 @@ env:
   PROD_ARTIFACTS_BUCKET: aws-sam-cli-managed-prod-pipeline-artifactsbucket-1ifbish4xjqrw
   PROD_REGION: ap-southeast-2
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     if: github.event_name == 'push'

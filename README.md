@@ -83,14 +83,14 @@ aws cloudformation delete-stack --stack-name nimo-app
 
 1. Price check and Email notification
    METHOD: POST
-   `https://6my74a4oi7.execute-api.ap-southeast-2.amazonaws.com/Prod/idOfCoin`
+   `https://1b1ddt2yl0.execute-api.ap-southeast-2.amazonaws.com/Prod/idOfCoin`
    where idOfCoin is the id of the coin you want to check the price of. You can find the id of the coin in the list of available coins ids below.
-   e.g. curl -X POST https://6my74a4oi7.execute-api.ap-southeast-2.amazonaws.com/Prod/bitcoin
+   e.g. curl -X POST https://1b1ddt2yl0.execute-api.ap-southeast-2.amazonaws.com/Prod/bitcoin
 
 2. History of price service
    METHOD: GET
-   `https://6my74a4oi7.execute-api.ap-southeast-2.amazonaws.com/Prod`
-   e.g. curl -X GET https://6my74a4oi7.execute-api.ap-southeast-2.amazonaws.com/Prod
+   `https://1b1ddt2yl0.execute-api.ap-southeast-2.amazonaws.com/Prod`
+   e.g. curl -X GET https://1b1ddt2yl0.execute-api.ap-southeast-2.amazonaws.com/Prod
 
 ## List of available coins ids
 
