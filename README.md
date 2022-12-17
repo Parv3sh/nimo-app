@@ -95,3 +95,7 @@ aws cloudformation delete-stack --stack-name nimo-app
 ## List of available coins ids
 
 https://api.coingecko.com/api/v3/coins/list
+
+## To add a new email to the list of emails to be notified
+
+Add the email in SES verified emails list and then add the email in the SSM Parameter Store with the key "EMAILS" and the value being a list of emails separated by a comma.

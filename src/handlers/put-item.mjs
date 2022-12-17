@@ -24,13 +24,17 @@ export const putItemHandler = async (event) => {
 
   const ssmClient = new SSMClient({});
   const ssmParams = {
-    Names: ["FROM", "EMAILS"],
+    Names: ["EMAILS", "FROM"],
     WithDecryption: true,
   };
-  const ssmData = await ssmClient.send(new GetParametersCommand(ssmParams));
-  const from = ssmData.Parameters[0].Value;
-  const emails = ssmData.Parameters[1].Value.split(",");
-  console.log("Success - ssm fetched", from, emails);
+  try {
+    var ssmData = await ssmClient.send(new GetParametersCommand(ssmParams));
+    var emails = ssmData.Parameters[0].Value.split(",");
+    var from = ssmData.Parameters[1].Value;
+    console.log("Success - ssm fetched", from, emails);
+  } catch (err) {
+    console.log("Error", err.stack, ssmData);
+  }
 
   const sesClient = new SESClient({});
   const sesParams = {

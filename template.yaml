@@ -44,6 +44,8 @@ Resources:
             TableName: !Ref PriceTable
         - SESCrudPolicy:
             IdentityName: "*"
+        - SSMParameterReadPolicy:
+            ParameterName: "*"
       Environment:
         Variables:
           PRICE_TABLE: !Ref PriceTable
