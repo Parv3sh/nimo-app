@@ -95,3 +95,7 @@ aws cloudformation delete-stack --stack-name nimo-app
 ## List of available coins ids
 
 https://api.coingecko.com/api/v3/coins/list
+
+## NOTE:
+
+The email address to send the notification to is hardcoded in the code. You can change it in the code, or it can be made dynamic via various methods, such as environment variables, or via secrets manager, etc.
