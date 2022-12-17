@@ -7,7 +7,7 @@ Project Structure:
 - `__tests__` - Unit tests for the application code.
 - `template.yaml` - A template that defines the application's AWS resources.
 
-The application uses several AWS resources, including Lambda functions, an API Gateway API, Simple Email Service and Amazon DynamoDB tables. These resources are defined in the `template.yaml` file in this project.
+The application uses several AWS resources, including Lambda functions, an API Gateway API, SSM Parameter Store, Simple Email Service and Amazon DynamoDB tables. These resources are defined in the `template.yaml` file in this project.
 
 ## Deploy the sample application
 
@@ -95,7 +95,3 @@ aws cloudformation delete-stack --stack-name nimo-app
 ## List of available coins ids
 
 https://api.coingecko.com/api/v3/coins/list
-
-## NOTE:
-
-The email address to send the notification to is hardcoded in the code. You can change it in the code, or it can be made dynamic via various methods, such as environment variables, or via secrets manager, etc.

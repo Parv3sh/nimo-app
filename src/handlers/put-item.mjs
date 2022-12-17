@@ -2,6 +2,7 @@ import axios from "axios";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
+import { SSMClient, GetParametersCommand } from "@aws-sdk/client-ssm";
 
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
@@ -21,10 +22,20 @@ export const putItemHandler = async (event) => {
   const res = await axios.get(url);
   const data = res.data;
 
+  const ssmClient = new SSMClient({});
+  const ssmParams = {
+    Names: ["FROM", "EMAILS"],
+    WithDecryption: true,
+  };
+  const ssmData = await ssmClient.send(new GetParametersCommand(ssmParams));
+  const from = ssmData.Parameters[0].Value;
+  const emails = ssmData.Parameters[1].Value.split(",");
+  console.log("Success - ssm fetched", from, emails);
+
   const sesClient = new SESClient({});
   const sesParams = {
     Destination: {
-      ToAddresses: ["parveshk2+nimo@gmail.com"],
+      ToAddresses: emails,
     },
     Message: {
       Body: {
@@ -35,7 +46,7 @@ export const putItemHandler = async (event) => {
       },
       Subject: { Data: "Price Alert" },
     },
-    Source: "parveshk2+nimo@gmail.com",
+    Source: from,
   };
   const sesData = await sesClient.send(new SendEmailCommand(sesParams));
   console.log("Success - email sent", sesData);
