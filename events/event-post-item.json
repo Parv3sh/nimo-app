@@ -1,4 +1,6 @@
 {
-    "httpMethod": "POST",
-    "body": "{\"id\": \"id1\",\"name\": \"name1\"}"
+  "httpMethod": "POST",
+  "pathParameters": {
+    "id": "bitcoin"
+  }
 }
